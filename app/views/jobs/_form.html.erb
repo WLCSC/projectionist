@@ -1,0 +1,43 @@
+<%= form_for([@screen,@job]) do |f| %>
+    <% if @job.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+            <ul>
+                <% @job.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :command_id %><br>
+        <%= f.select :command_id, @screen.commands.map{|c| [c.name, c.id]}%>
+    </div>
+    <div class="field">
+        <%= f.label :arguments %><br>
+        <%= f.text_area :arguments %>
+    </div>
+    <div class="field">
+        <%= f.label :target %><br>
+        <div id="picker" class="input-append">
+            <input data-format="yyyy-MM-dd HH:mm:ss PP" type="text" id="job_target_string" name="job[target_string]" <% if @job.target %> value="<%= @job.target_string %>" <% end %>></input>
+            <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+            </span>
+        </div>
+        <%= javascript_tag do %>
+            $(function() {
+            $('#picker').datetimepicker({
+            language: 'en',
+            pick12HourFormat: true,
+            pickseconds: false
+            });
+            });
+        <% end %>
+    </div>
+    <div class="actions">
+        <%= f.submit :class => 'btn btn-primary' %>
+    </div>
+<% end %>

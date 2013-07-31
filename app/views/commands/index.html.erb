@@ -1,0 +1,25 @@
+<h1>Commands</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Notes</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @commands.each do |command| %>
+      <tr>
+        <td><%= link_to command.name, command %></td>
+        <td><%= command.notes %></td>
+        <td><%= command.data %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Command', new_command_path, :class => 'btn btn-primary' %>

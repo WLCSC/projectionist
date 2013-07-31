@@ -1,0 +1,25 @@
+<h1>Screens</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @screens.each do |screen| %>
+      <tr>
+          <td><%= link_to screen.name, screen %></td>
+          <td><code><%= screen.address %></code></td>
+        <td><%= screen.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Screen', new_screen_path, :class => 'btn btn-primary' %>

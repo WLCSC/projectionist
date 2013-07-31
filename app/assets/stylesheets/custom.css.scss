@@ -1,0 +1,81 @@
+body {
+    margin-top: 56px;
+}
+
+.navbar-inner {
+    background-image: asset-url("filmstrip.png") !important;
+    background-color: lighten(#AD1D28, 10%);
+    min-height: 28px;
+    height: 28px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    .container {
+        height: 32px;
+        margin: 0px auto;
+    }
+
+    .brand {
+        padding: 0px;
+        padding-top: 2px;
+        font-size: 28px;
+        color: #ff6;
+        text-shadow: 1px 1px 2px #ff0 !important;
+    }
+
+    .nav {
+        margin-left: 16px;
+        li > a {
+            padding-bottom: 4px;
+            padding-top: 4px;
+
+            &:hover {
+                text-shadow: 0px 1px 2px #ff0 !important;
+                color: #ff6;
+            }
+       }
+    }   
+}   
+
+#error_explanation {
+    @extend .alert;
+    @extend .alert-error;
+
+    h2 {
+        font-family: 'Cabin', sans-serif;
+        font-size: 24px;
+        line-height: 24px;
+    }
+}
+
+.nav-pills > li > a {
+    background-color: #ad1d28;
+    border-radius: 8px;
+
+    &:hover {
+        background-color: #d92432;
+        color: white;
+    }
+}
+
+code {
+    background-color: #111;
+    color: #0f0;
+}
+
+a {
+    color: #fea;
+}
+
+.old_job {
+    background-color: #60A0A6;
+    color: #B9CBCA;
+
+    td {
+        background-color: #60A0A6 !important;
+
+        a {
+            color: #B9CBCA;
+        }
+    }
+}

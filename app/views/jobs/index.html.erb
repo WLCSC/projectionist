@@ -1,0 +1,38 @@
+<h1>Jobs</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <% unless @screen %><th>Screen</th><% end %>
+      <th>Target Run Time</th>
+      <th>Command</th>
+      <th>Arguments</th>
+      <th>User</th>
+      <% if @screen %><th>Actions</th><% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+        <tr<%= job.old? ? ' class="old_job" '.html_safe : ""%>>
+        <% unless @screen %><td><%= link_to job.screen.name, job.screen %></td><% end %>
+        <td><%= nice_datetime job.target %></td>
+        <td><%= link_to job.command.name, job.command %></td>
+        <td><%= job.arguments %></td>
+        <td><%= link_to job.user.name, job.user %></td>
+        <% if @screen %>
+            <td>
+                <%= link_to "Edit", edit_screen_job_path(@screen, job), :class => 'btn btn-mini btn-info' %>
+                <%= link_to "Cancel", job, :method => 'delete', :class => 'btn btn-mini btn-warning', :confirm => 'Really cancel job?' %>
+            </td>
+        <% end %>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if @screen %>
+    <%= link_to 'New Job', new_screen_job_path(@screen), :class => 'btn btn-primary' %>
+<% end %>

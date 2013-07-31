@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  screen_id: 1
+  command_id: 1
+
+two:
+  screen_id: 1
+  command_id: 1

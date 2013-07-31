@@ -1,0 +1,13 @@
+<h1><%= @command.name %></h1>
+
+<p><i><%= @command.notes %></i></p>
+
+<p>
+  <code><%= @command.data %></code>
+</p>
+
+  <h3>Available on:</h3>
+  <%= pills_for @command.screens %>
+
+<%= link_to 'Edit', edit_command_path(@command), :class => 'btn btn-info' %>
+<%= link_to 'Delete', command_path(@command), :method => 'delete', :class => 'btn btn-warning', :confirm => 'Really delete ' + @command.name + "?"  %>

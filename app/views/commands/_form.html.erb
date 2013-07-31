@@ -1,0 +1,33 @@
+<%= form_for(@command) do |f| %>
+  <% if @command.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@command.errors.count, "error") %> prohibited this command from being saved:</h2>
+
+      <ul>
+      <% @command.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :data %><br>
+    <%= f.text_area :data %>
+  </div>
+  <div class="field">
+      <p>Available on:</p>
+      <%= collection_check_boxes(:command, :screen_ids, Screen.all, :id, :name) %>
+  </div>
+  <div class="actions">
+      <%= f.submit :class => 'btn btn-primary' %>
+  </div>
+<% end %>

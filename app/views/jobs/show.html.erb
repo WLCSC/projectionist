@@ -1,0 +1,26 @@
+<p>
+  <strong>Screen:</strong>
+  <%= @job.screen_id %>
+</p>
+
+<p>
+  <strong>Command:</strong>
+  <%= @job.command_id %>
+</p>
+
+<p>
+  <strong>Arguments:</strong>
+  <%= @job.arguments %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @job.user_id %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @job.target %>
+</p>
+
+<%= link_to 'Edit', edit_screen_job_path(@screen, @job), :class => 'btn btn-info' %>

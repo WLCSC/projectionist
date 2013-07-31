@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Projectionist</title>
+        <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+        <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <%= link_to "Projectionist", root_path, :class => 'brand' %>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <% if current_user %>
+                                <li><%= link_to "Screens", screens_path %></li>
+                            <% end %>
+                            <% if current_user && can?(:write, Job) %>
+                                <li><%= link_to "Jobs", jobs_path %></li>
+                                <li><%= link_to "Daily Schedules", schedules_path %></li>
+                                <li><%= link_to "Commands", commands_path %></li>
+                            <% end %>
+                            <% if current_user && current_user.admin? %>
+                                <li><%= link_to "Users", users_path %></li>
+                                <li><%= link_to "Groups", groups_path %></li>
+                            <% end %>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <%= yield %>
+        </div>
+
+    </body>
+</html>

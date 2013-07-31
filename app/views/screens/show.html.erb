@@ -1,0 +1,12 @@
+<h1><%= @screen.name %></h1>
+
+<p><i><%= @screen.description %></i></p>
+
+<p><b>Running on:</b> <code><%= @screen.address %></code></p>
+
+<h3>Available Commands</h3>
+<%= pills_for @screen.commands %>
+
+<%= link_to 'Jobs', screen_jobs_path(@screen), :class => 'btn btn-primary' %>
+<%= link_to 'Edit', edit_screen_path(@screen), :class => 'btn btn-info' %>
+<%= link_to 'Delete', screen_path(@screen), :method => 'delete', :class => 'btn btn-warning', :confirm => "Really delete #{@screen.name}?" %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  screen_id: 1
+  command_id: 1
+  arguments: MyText
+  user_id: 1
+  target: 2013-07-03 12:51:41
+
+two:
+  screen_id: 1
+  command_id: 1
+  arguments: MyText
+  user_id: 1
+  target: 2013-07-03 12:51:41
