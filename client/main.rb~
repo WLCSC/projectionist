@@ -2,7 +2,7 @@ require 'drb'
 require 'socket'
 
 
-here = "druby://#{Socket.gethostbyname(Socket.gethostname).first}:9821"
+here = "druby://#{Socket.gethostbyname(Socket.gethostname).first}:8787"
 
 exe = Object.new
 
