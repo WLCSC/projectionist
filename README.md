@@ -5,7 +5,7 @@ Projectionist
 How To
 ------
 * bundle install
-* edit/create config/database.yml, config/app_config.yml, config/initializers/mail.rb
+* edit/create config/database.yml, config/app_config.yml
 * rake db:setup
 
 This can use LDAP and/or a local set of users for authentication.  Users have to exist before they can log in, which means you need to manually create at least 1 user in your database before you can get in.

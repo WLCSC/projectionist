@@ -1,5 +1,5 @@
 class ScreensController < ApplicationController
-  before_action :set_screen, only: [:show, :edit, :update, :destroy]
+  before_action :set_screen, only: [:show, :edit, :update, :destroy, :ping]
 
   # GET /screens
   # GET /screens.json
@@ -59,6 +59,10 @@ class ScreensController < ApplicationController
       format.html { redirect_to screens_url }
       format.json { head :no_content }
     end
+  end
+
+  def ping
+    redirect_to @screen, :notice => @screen.ping
   end
 
   private
