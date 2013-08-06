@@ -8,18 +8,18 @@ class Job < ActiveRecord::Base
     before_save :set_target
 
     def set_target
-        self.target = Time.zone.parse(self.target_string)
+        self.target = Time.zone.parse(self.target_string) if self.target_string
     end
 
-    def target_string
+    def target_str
         self.target.strftime("%Y-%m-%d %l:%M %p")
     end
 
     def old?
-        self.target < Time.now
+        self.target < Time.now && !removable
     end
 
     def executable
-        self.command.data.gsub('\$', self.arguments)
+        self.command.data.gsub('%%%', self.arguments)
     end
 end

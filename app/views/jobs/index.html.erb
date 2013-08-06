@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <% unless @screen %><th>Screen</th><% end %>
-      <th>Target Run Time</th>
+      <th>Target Run Time<br/><%= nice_datetime Time.zone.now %></th>
       <th>Command</th>
       <th>Arguments</th>
       <th>User</th>
@@ -16,7 +16,7 @@
     <% @jobs.each do |job| %>
         <tr<%= job.old? ? ' class="old_job" '.html_safe : ""%>>
         <% unless @screen %><td><%= link_to job.screen.name, job.screen %></td><% end %>
-        <td><%= nice_datetime job.target %></td>
+        <td><%= nice_datetime job.target %> <%= i('star') if job.removable %></td>
         <td><%= link_to job.command.name, job.command %></td>
         <td><%= job.arguments %></td>
         <td><%= link_to job.user.name, job.user %></td>

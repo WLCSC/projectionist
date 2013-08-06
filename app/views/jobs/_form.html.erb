@@ -12,17 +12,17 @@
     <% end %>
 
     <div class="field">
-        <%= f.label :command_id %><br>
+        <%= f.label :command_id %>
         <%= f.select :command_id, @screen.commands.map{|c| [c.name, c.id]}%>
     </div>
     <div class="field">
-        <%= f.label :arguments %><br>
+        <%= f.label :arguments %>
         <%= f.text_area :arguments %>
     </div>
     <div class="field">
-        <%= f.label :target %><br>
+        <%= f.label :target %>
         <div id="picker" class="input-append">
-            <input data-format="yyyy-MM-dd HH:mm:ss PP" type="text" id="job_target_string" name="job[target_string]" <% if @job.target %> value="<%= @job.target_string %>" <% end %>></input>
+            <input data-format="yyyy-MM-dd HH:mm PP" type="text" id="job_target_string" name="job[target_string]" <% if @job.target %> value="<%= @job.target_str %>" <% end %>></input>
             <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
             </span>
@@ -32,7 +32,7 @@
             $('#picker').datetimepicker({
             language: 'en',
             pick12HourFormat: true,
-            pickseconds: false
+            pickSeconds: false
             });
             });
         <% end %>

@@ -12,26 +12,38 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :screen_id %><br>
-    <%= f.number_field :screen_id %>
+    <%= f.label :screen_id %>
+    <%= f.select :screen_id, Screen.all.map{|s| [s.name, s.id]} %>
   </div>
   <div class="field">
-    <%= f.label :command_id %><br>
-    <%= f.number_field :command_id %>
+    <%= f.label :command_id %>
+    <%= f.select :command_id, Command.all.map{|c| [c.name, c.id]} %>
   </div>
   <div class="field">
-    <%= f.label :arguments %><br>
+    <%= f.label :arguments %>
     <%= f.text_area :arguments %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :offset %><br>
-    <%= f.number_field :offset %>
-  </div>
+    <div class="field">
+        <%= f.label :offset, "Time" %>
+        <div id="picker" class="input-append">
+            <input data-format="HH:mm PP" type="text" id="schedule_offset_string" name="schedule[offset_string]" <% if @schedule.offset %> value="<%= @schedule.offset_str %>" <% end %>></input>
+            <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+            </span>
+        </div>
+        <%= javascript_tag do %>
+            $(function() {
+            $('#picker').datetimepicker({
+            language: 'en',
+            pick12HourFormat: true,
+            pickSeconds: false,
+            pickDate: false
+            });
+            });
+        <% end %>
+    </div>
+
   <div class="actions">
-    <%= f.submit %>
+      <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

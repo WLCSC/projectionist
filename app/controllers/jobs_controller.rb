@@ -6,9 +6,9 @@ class JobsController < ApplicationController
   def index
       if params[:screen_id]
           @screen = Screen.find(params[:screen_id])
-          @jobs = @screen.jobs
+          @jobs = @screen.jobs.order('target')
       else
-        @jobs = Job.all
+        @jobs = Job.order('target')
       end
   end
 
@@ -76,7 +76,7 @@ class JobsController < ApplicationController
       end
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url }
+      format.html { redirect_to @screen || jobs_url }
       format.json { head :no_content }
     end
   end
