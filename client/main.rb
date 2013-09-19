@@ -4,7 +4,7 @@ require 'open-uri'
 
 
 def here
-	@here ||= "druby://#{Socket.gethostbyname(Socket.gethostname).first}:9821"
+	@here ||= Socket.gethostbyname(Socket.gethostname).first
 end
 
 def execute(str)
@@ -19,7 +19,7 @@ open(@there) do |f|
     @screens = JSON.parse(f.read)
 end
 
-@screens.select!{|x| x.address == here}
+@screens.select!{|x| x['address'] == here}
 if @screens.length > 0
     @url = @screens[0]['url'] 
     open(@url) do |f|
@@ -29,7 +29,7 @@ if @screens.length > 0
     @current_id = @screen['job']['id']
     execute @screen['job']['executable']
 else
-    puts "This is not a registered screen.  Goodbye."
+    puts "[#{here}] is not a registered screen.  Goodbye."
     exit
 end
 
