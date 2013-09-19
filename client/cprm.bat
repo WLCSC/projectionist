@@ -1,3 +1,3 @@
-xcopy "%2" target%~x2
+robocopy "%2" target%~x2
 "%1" target%~x2
 

@@ -34,7 +34,7 @@ else
 end
 
 while true
-    sleep(5*60)
+    sleep(1*60)
     open(@url) do |f|
         @screen = JSON.parse(f.read)
     end
