@@ -1,27 +1,45 @@
-require 'drb'
+require 'json'
 require 'socket'
+require 'open-uri'
 
 
-
-exe = Object.new
-
-def exe.here
+def here
 	@here ||= "druby://#{Socket.gethostbyname(Socket.gethostname).first}:9821"
 end
 
-def exe.execute(str)
+def execute(str)
     puts "Running <#{str}>"
     `kill.bat`
     sleep(1)
     Thread.new(str) {|c| `#{c}`}
 end
 
-def exe.ping
-	puts "I've been pinged."
-	"Projectionist client #{@here} responding at #{Time.now.to_s}."
+@there = ARGV[0]
+open(@there) do |f|
+    @screens = JSON.parse(f.read)
 end
 
-DRb.start_service exe.here, exe
-puts "Running #{exe.here}"
-DRb.thread.join
+@screens.select!{|x| x.address == here}
+if @screens.length > 0
+    @url = @screens[0]['url'] 
+    open(@url) do |f|
+        @screen = JSON.parse(f.read)
+    end
+    puts "I am screen #{@screen['name']}"
+    @current_id = @screen['job']['id']
+    execute @screen['job']['executable']
+else
+    puts "This is not a registered screen.  Goodbye."
+    exit
+end
 
+while true
+    sleep(5*60)
+    open(@url) do |f|
+        @screen = JSON.parse(f.read)
+    end
+    if @current_id != @screen['job']['id']
+        @current_id = @screen['job']['id']
+        execute @screen['job']['executable']
+    end
+end

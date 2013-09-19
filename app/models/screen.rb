@@ -10,18 +10,27 @@ class Screen < ActiveRecord::Base
         self.name
     end
 
-    def push_job
+    def current_job
         q = jobs.where("target < ?", Time.zone.now).order('target').to_a
-        while q.length > 1
-            q.first.delete
-            q.delete_at(0)
-        end
-        begin
-            connect
+        if q.length > 0
+            while q.length > 1
+                q.first.delete
+                q.delete_at(0)
+            end
             j = q.delete_at(0)
-            @remote.execute(j.executable) unless j.removable == true
             j.removable = true
             j.save
+            j
+        else
+            nil
+        end
+    end
+
+    def push_job
+        j = current_job
+        begin
+            connect
+            @remote.execute(j.executable) unless j.removable == true
         rescue
             puts "Oops - couldn't run on #{address}"
             puts $!
