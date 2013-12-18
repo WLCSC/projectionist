@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @jobs.each do |job| %>
+    <% @jobs.order(:target).each do |job| %>
         <tr<%= job.old? ? ' class="old_job" '.html_safe : ""%>>
         <% unless @screen %><td><%= link_to job.screen.name, job.screen %></td><% end %>
         <td><%= nice_datetime job.target %> <%= i('star') if job.removable %></td>

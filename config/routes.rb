@@ -5,7 +5,6 @@ Projectionist::Application.routes.draw do
     resources :screens do
         resources :jobs
         resources :schedules
-        get :ping, :on => :member
     end
     resources :jobs
     resources :schedules

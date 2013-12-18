@@ -35,7 +35,11 @@ body {
             }
        }
     }   
-}   
+}  
+
+.small-font {
+    font-size: 12px;
+}
 
 #error_explanation {
     @extend .alert;

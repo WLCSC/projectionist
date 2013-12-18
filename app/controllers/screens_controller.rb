@@ -61,10 +61,6 @@ class ScreensController < ApplicationController
     end
   end
 
-  def ping
-    redirect_to @screen, :notice => @screen.ping
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_screen

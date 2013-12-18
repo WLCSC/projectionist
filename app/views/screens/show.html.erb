@@ -21,7 +21,7 @@
   </thead>
 
   <tbody>
-    <% @screen.jobs.each do |job| %>
+    <% @screen.jobs.order(:target).each do |job| %>
         <tr<%= job.old? ? ' class="old_job" '.html_safe : ""%>>
         <td><%= nice_datetime job.target %> <%= i('star') if job.removable %></td>
         <td><%= link_to job.command.name, job.command %></td>
@@ -38,6 +38,5 @@
 
 <br>
 <%= link_to 'New Job', new_screen_job_path(@screen), :class => 'btn btn-primary' %>
-<%= link_to 'Ping', ping_screen_path(@screen), :class => 'btn btn-success' %>
 <%= link_to 'Edit', edit_screen_path(@screen), :class => 'btn btn-info' %>
 <%= link_to 'Delete', screen_path(@screen), :method => 'delete', :class => 'btn btn-warning', :confirm => "Really delete #{@screen.name}?" %>

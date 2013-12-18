@@ -19,7 +19,7 @@
         <td><%= link_to schedule.command.name, schedule.command %></td>
         <td><%= schedule.arguments %></td>
         <td><%= link_to schedule.user.name, schedule.user %></td>
-        <td><%= schedule.offset_str %>(<%= schedule.offset %>)</td>
+        <td><%= schedule.offset_str %></td>
         <td>
             <%= link_to 'Edit', edit_schedule_path(schedule), :class => 'btn btn-info btn-mini'%>
             <%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-warning btn-mini' %>

@@ -1,5 +1,26 @@
 <% if current_user %>
-
+    <h1>What's Happening</h1>
+    <% Screen.all.in_groups_of(3) do |row| %>
+        <div class="row">
+            <% row.each do |screen| %>
+                <% if screen %>
+                    <div class="span4">
+                        <%= link_to screen.name, screen, :class => 'btn btn-primary btn-large btn-block' %>
+                        <% if screen.jobs.count > 0 %>
+                            <table class="table table-striped small-font">
+                                <% screen.jobs.order(:target).first(3).each do |j| %>
+                                    <tr>
+                                        <td><%= nice_datetime j.target %></td>
+                                        <td><%= j.command.name %></td>
+                                    </tr>
+                                <% end %>
+                            </table>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
 <% else %>
     <%= render :partial => 'sessions/login' %>
 <% end %>

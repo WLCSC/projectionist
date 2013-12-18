@@ -7,7 +7,11 @@ class Ability
       if user.admin?
         can :manage, :all
       else
-
+        cannot :manage, Screen
+        cannot :manage, Job
+        cannot :manage, User
+        cannot :manage, Group
+        can :read, Screen
       end
     # Define abilities for the passed in user here. For example:
     #
