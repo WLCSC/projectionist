@@ -4,14 +4,14 @@ require 'open-uri'
 
 
 def here
-	@here ||= Socket.gethostbyname(Socket.gethostname).first
+	@here ||= Socket.gethostname
 end
 
 def execute(str)
     puts "Running <#{str}>"
-    `kill.bat`
+    `./kill.sh`
     sleep(1)
-    Thread.new(str) {|c| `#{c}`}
+    Thread.new(str) {|c| puts `#{c}`}
 end
 
 @there = ARGV[0]
