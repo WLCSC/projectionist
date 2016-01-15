@@ -9,7 +9,7 @@ end
 
 def execute(str)
     puts "Running <#{str}>"
-    `./kill.sh`
+    `./kill.bat`
     sleep(1)
     Thread.new(str) {|c| puts `#{c}`}
 end
@@ -18,7 +18,7 @@ end
 open(@there) do |f|
     @screens = JSON.parse(f.read)
 end
-
+puts "Found #{@screens.count} screens: #{@screens.map{|x| x['address']}.join(', ')}"
 @screens.select!{|x| x['address'] == here}
 if @screens.length > 0
     @url = @screens[0]['url'] 
