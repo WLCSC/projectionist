@@ -5,6 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Notes</th>
+      <th>Enabled On</th>
       <th>Data</th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= link_to command.name, command %></td>
         <td><%= command.notes %></td>
+	<td><%= pills_for command.screens %></td>
         <td><%= command.data %></td>
       </tr>
     <% end %>

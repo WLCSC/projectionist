@@ -1,5 +1,6 @@
 class ScreensController < ApplicationController
   before_action :set_screen, only: [:show, :edit, :update, :destroy, :ping]
+  skip_before_action :check_for_user, only: [:index, :show]
 
   # GET /screens
   # GET /screens.json

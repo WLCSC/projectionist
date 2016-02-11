@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.13'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -53,7 +54,7 @@ gem "net-ldap"
 gem "cancan"
 gem "bluecloth"
 gem "jquery-datatables-rails"
-gem "mysql2"
+#gem "mysql2"
 gem "sqlite3"
 gem "resque"
 gem "unicorn"

@@ -6,6 +6,11 @@ class Job < ActiveRecord::Base
     attr_accessor :target_string
 
     before_save :set_target
+    validate :check_datetime
+
+    def check_datetime
+        errors.add(:target, "must be in the future") if (self.target || Time.zone.parse(self.target_string)) < Time.now
+    end
 
     def set_target
         self.target = Time.zone.parse(self.target_string) if self.target_string

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-	#before_filter :check_for_user
+	before_filter :check_for_user
 
   private
   def current_user  

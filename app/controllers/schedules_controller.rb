@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.order("offset").order("screen_id")
+    @schedules = Schedule.order(offset: :asc, screen_id: :desc)
   end
 
   # GET /schedules/1
