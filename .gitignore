@@ -17,3 +17,5 @@ rerun.txt
 pickle-email-*.html
 .lockfile
 /config/initializers/mail.rb
+*.swp
+*~

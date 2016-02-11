@@ -26,7 +26,11 @@ if @screens.length > 0
         @screen = JSON.parse(f.read)
     end
     puts "I am screen #{@screen['name']}"
+    begin
     @current_id = @screen['job']['id']
+    rescue
+	    puts @screen.to_json
+    end
     execute @screen['job']['executable']
 else
     puts "[#{here}] is not a registered screen.  Goodbye."
